@@ -30,6 +30,21 @@ network = google_compute_network.amatic-dev-vpc.self_link
 private_ip_google_access = true
 }
 
+resource "google_container_cluster" "amatic_dev_cluster" {
+  name     = "amatic-dev"
+  location = var.region
+  project  = var.project_id
+
+  node_pool {
+    name       = "dev-node-pool"
+    node_count = 1
+
+    node_config {
+      machine_type = "n1-standard-2"
+    }
+  }
+}
+
 #End of dev environment configuration
 
 #Staging environment configuration
