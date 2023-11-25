@@ -1,8 +1,3 @@
-resource "google_storage_bucket" "amatic_bucket" {
-  name          = "amatic"
-  location      = "EUROPE-WEST2" 
-  force_destroy = true
-}
 terraform {
   backend "gcs" {
     bucket =  "amatic"
@@ -116,3 +111,9 @@ private_ip_google_access = true
 }
 
 #End of production environment configuration
+
+resource "google_storage_bucket" "amatic_bucket" {
+  name          = "amatic"
+  location      = "EUROPE-WEST2" 
+  force_destroy = true
+}
