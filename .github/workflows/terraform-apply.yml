@@ -1,9 +1,10 @@
 name: Terraform Apply
 
 on:
-  pull_request:
-    types:
-      - closed
+  workflow_dispatch:
+  push:
+    branches:
+      - master
 
 jobs:
   terraform-apply:
