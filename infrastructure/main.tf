@@ -3,116 +3,116 @@ resource "google_storage_bucket" "amatic_bucket" {
   location      = "EUROPE-WEST2" 
   force_destroy = true
 }
-# terraform {
-#   backend "gcs" {
-#     bucket =  "amatic"
-#     prefix = "terraform/state"
-#   }
-# }
-# provider "google" {
-# project = var.project_id
-# region = var.region
-# }
+terraform {
+  backend "gcs" {
+    bucket =  "amatic"
+    prefix = "terraform/state"
+  }
+}
+provider "google" {
+project = var.project_id
+region = var.region
+}
 
-# #Dev environment configuration
-# resource "google_compute_network" "amatic-dev-vpc" {
-# name = "amatic-dev-vpc"
-# auto_create_subnetworks = false
+#Dev environment configuration
+resource "google_compute_network" "amatic-dev-vpc" {
+name = "amatic-dev-vpc"
+auto_create_subnetworks = false
 
-# routing_mode = "GLOBAL"
+routing_mode = "GLOBAL"
 
-# }
+}
 
-# resource "google_compute_subnetwork" "amatic_dev_public_subnet" {
-# name = "amatic-dev-public-subnet"
-# ip_cidr_range = var.dev_public_subnet_cidr_block
+resource "google_compute_subnetwork" "amatic_dev_public_subnet" {
+name = "amatic-dev-public-subnet"
+ip_cidr_range = var.dev_public_subnet_cidr_block
 
-# region = var.region
-# network = google_compute_network.amatic-dev-vpc.self_link
-# private_ip_google_access = false
-# }
+region = var.region
+network = google_compute_network.amatic-dev-vpc.self_link
+private_ip_google_access = false
+}
 
-# resource "google_compute_subnetwork" "amatic_dev_private_subnet" {
-# name = "amatic-dev-private-subnet"
-# ip_cidr_range = var.dev_private_subnet_cidr_block
+resource "google_compute_subnetwork" "amatic_dev_private_subnet" {
+name = "amatic-dev-private-subnet"
+ip_cidr_range = var.dev_private_subnet_cidr_block
 
-# region = var.region
-# network = google_compute_network.amatic-dev-vpc.self_link
-# private_ip_google_access = true
-# }
+region = var.region
+network = google_compute_network.amatic-dev-vpc.self_link
+private_ip_google_access = true
+}
 
-# resource "google_container_cluster" "amatic_dev_cluster" {
-#   name     = "amatic-dev"
-#   location = var.region
-#   project  = var.project_id
+resource "google_container_cluster" "amatic_dev_cluster" {
+  name     = "amatic-dev"
+  location = var.region
+  project  = var.project_id
 
-#   node_pool {
-#     name       = "dev-node-pool"
-#     node_count = 1
+  node_pool {
+    name       = "dev-node-pool"
+    node_count = 1
 
-#     node_config {
-#       machine_type = "n1-standard-2"
-#     }
-#   }
-# }
+    node_config {
+      machine_type = "n1-standard-2"
+    }
+  }
+}
 
-# #End of dev environment configuration
+#End of dev environment configuration
 
-# #Staging environment configuration
-# resource "google_compute_network" "amatic-stage-vpc" {
-# name = "amatic-stage-vpc"
-# auto_create_subnetworks = false
+#Staging environment configuration
+resource "google_compute_network" "amatic-stage-vpc" {
+name = "amatic-stage-vpc"
+auto_create_subnetworks = false
 
-# routing_mode = "GLOBAL"
+routing_mode = "GLOBAL"
 
-# }
+}
 
-# resource "google_compute_subnetwork" "amatic_stage_public_subnet" {
-# name = "amatic-stage-public-subnet"
-# ip_cidr_range = var.stage_public_subnet_cidr_block
+resource "google_compute_subnetwork" "amatic_stage_public_subnet" {
+name = "amatic-stage-public-subnet"
+ip_cidr_range = var.stage_public_subnet_cidr_block
 
-# region = var.region
-# network = google_compute_network.amatic-stage-vpc.self_link
-# private_ip_google_access = false
-# }
+region = var.region
+network = google_compute_network.amatic-stage-vpc.self_link
+private_ip_google_access = false
+}
 
-# resource "google_compute_subnetwork" "amatic_stage_private_subnet" {
-# name = "amatic-stage-private-subnet"
-# ip_cidr_range = var.stage_private_subnet_cidr_block
+resource "google_compute_subnetwork" "amatic_stage_private_subnet" {
+name = "amatic-stage-private-subnet"
+ip_cidr_range = var.stage_private_subnet_cidr_block
 
-# region = var.region
-# network = google_compute_network.amatic-stage-vpc.self_link
-# private_ip_google_access = true
-# }
+region = var.region
+network = google_compute_network.amatic-stage-vpc.self_link
+private_ip_google_access = true
+}
 
-# #End of staging environment configuration
+#End of staging environment configuration
 
-# #Production environment configuration
+#Production environment configuration
 
-# resource "google_compute_network" "amatic-prod-vpc" {
-# name = "amatic-prod-vpc"
-# auto_create_subnetworks = false
+resource "google_compute_network" "amatic-prod-vpc" {
+name = "amatic-prod-vpc"
+auto_create_subnetworks = false
 
-# routing_mode = "GLOBAL"
+routing_mode = "GLOBAL"
 
-# }
+}
 
-# resource "google_compute_subnetwork" "amatic_prod_public_subnet" {
-# name = "amatic-prod-public-subnet"
-# ip_cidr_range = var.prod_public_subnet_cidr_block
+resource "google_compute_subnetwork" "amatic_prod_public_subnet" {
+name = "amatic-prod-public-subnet"
+ip_cidr_range = var.prod_public_subnet_cidr_block
 
-# region = var.region
-# network = google_compute_network.amatic-prod-vpc.self_link
-# private_ip_google_access = false
-# }
+region = var.region
+network = google_compute_network.amatic-prod-vpc.self_link
+private_ip_google_access = false
+}
 
-# resource "google_compute_subnetwork" "amatic_prod_private_subnet" {
-# name = "amatic-prod-private-subnet"
-# ip_cidr_range = var.prod_private_subnet_cidr_block
+resource "google_compute_subnetwork" "amatic_prod_private_subnet" {
+name = "amatic-prod-private-subnet"
+ip_cidr_range = var.prod_private_subnet_cidr_block
 
-# region = var.region
-# network = google_compute_network.amatic-prod-vpc.self_link
-# private_ip_google_access = true
-# }
+region = var.region
+network = google_compute_network.amatic-prod-vpc.self_link
+private_ip_google_access = true
+}
 
 #End of production environment configuration
