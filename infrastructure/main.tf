@@ -3,13 +3,12 @@ resource "google_storage_bucket" "my_bucket" {
   location      = "EUROPE-WEST2" 
   force_destroy = true
 }
-
-# terraform {
-#   backend "gcs" {
-#     bucket = "amatic"
-#     prefix = "terraform/state"
-#   }
-# }
+terraform {
+  backend "gcs" {
+    bucket = "amatic"
+    prefix = "terraform/state"
+  }
+}
 provider "google" {
 project = var.project_id
 region = var.region
