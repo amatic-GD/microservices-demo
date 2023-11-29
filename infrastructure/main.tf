@@ -153,22 +153,6 @@ resource "google_container_cluster" "amatic_prod_cluster" {
   monitoring_service = "monitoring.googleapis.com/kubernetes"
 
 }
-resource "google_secret_manager_secret" "root_password_secret" {
-  secret_id = "root_password"
-  project = var.project_id
-  replication {
-    auto {}
-  }
-
-}
-resource "google_secret_manager_secret" "db_password_secret" {
-  secret_id = "db_password"
-  project = var.project_id
-
-  replication {
-    auto {}
-  }
-}
 
 #End of production environment configuration
 resource "google_storage_bucket" "amatic_bucket" {
