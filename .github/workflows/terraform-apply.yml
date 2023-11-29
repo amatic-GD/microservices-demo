@@ -59,4 +59,5 @@ jobs:
       - name: Apply Kubernetes Manifests for Dev stage
         run: |
           gcloud components install gke-gcloud-auth-plugin
+          kubectl apply -f deploy/kubernetes/dev-secret.yaml
           kubectl apply -f deploy/kubernetes/complete-demo.yaml
