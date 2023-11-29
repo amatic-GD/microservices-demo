@@ -226,12 +226,12 @@ spec:
           - name: MYSQL_ROOT_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: root_password
+                name: root-password
                 key: root_pass
           - name: MYSQL_DATABASE
             valueFrom:
               secretKeyRef:
-                name: db_password
+                name: db-password
                 key: db_pass    
         ports:
         - name: mysql
