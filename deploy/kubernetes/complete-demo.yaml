@@ -226,10 +226,13 @@ spec:
           - name: MYSQL_ROOT_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: mysecret
-                key: password
+                name: root_password
+                key: root_pass
           - name: MYSQL_DATABASE
-            value: socksdb
+            valueFrom:
+              secretKeyRef:
+                name: db_password
+                key: db_pass    
         ports:
         - name: mysql
           containerPort: 3306
