@@ -156,31 +156,17 @@ resource "google_container_cluster" "amatic_prod_cluster" {
 resource "google_secret_manager_secret" "root_password_secret" {
   secret_id = "root_password"
   project = var.project_id
-
   replication {
-    user_managed {
-      replicas {
-        location = var.region
-      }
-      replicas {
-        location = var.region
-      }
-    }
+    auto {}
   }
+
 }
 resource "google_secret_manager_secret" "db_password_secret" {
   secret_id = "db_password"
   project = var.project_id
 
   replication {
-    user_managed {
-      replicas {
-        location = var.region
-      }
-      replicas {
-        location = var.region
-      }
-    }
+    auto {}
   }
 }
 
