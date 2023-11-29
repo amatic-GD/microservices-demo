@@ -132,11 +132,26 @@ resource "google_container_cluster" "amatic_prod_cluster" {
 
   node_pool {
     name       = "prod-node-pool"
-    node_count = 1
-     node_config {
-      machine_type = "n1-standard-2"
+    initial_node_count = 3
+    autoscaling {
+      min_node_count = 3
+      max_node_count = 10
+    }
+
+    node_config {
+      machine_type = "n1-standard-4"  
+      disk_size_gb = 100              
+      preemptible  = false            
     }
   }
+
+  network_policy {
+    enabled = true 
+  }
+
+  logging_service = "logging.googleapis.com/kubernetes"
+  monitoring_service = "monitoring.googleapis.com/kubernetes"
+
 }
 
 #End of production environment configuration
